@@ -6,7 +6,9 @@ import vueDevTools from 'vite-plugin-vue-devtools'
 
 // https://vite.dev/config/
 export default defineConfig(e => {
-  const env= loadEnv(e.mode, './')
+  const env = loadEnv(e.mode, './')
+
+  console.log({env})
   return {
     plugins: [
       vue(),
@@ -19,14 +21,18 @@ export default defineConfig(e => {
     },
 
     server: {
-      allowedHosts: 'all',
+      host: true,
+      // allowedHosts: 'all',
       port: env.VITE_PORT,
       proxy: {
         '/api': {
-          target: env.VITE_API_BASEURL,
+          changeOrigin: true,
+          target: env.VITE_APP_API_BASEURL,
           ws: true,
-          pathRewrite: {
-            '^/api': '/'
+          secure: false,
+          rewrite: path =>{
+            const res = path.replace('/api', '')
+            return  res
           }
         }
       }

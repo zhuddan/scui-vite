@@ -14,6 +14,11 @@
 </template>
 
 <script>
+import { useGlobalStore } from '@/store/global';
+import { useIframeStore } from '@/store/iframe';
+import { useKeepAliveStore } from '@/store/keepAlive';
+import { mapStores } from 'pinia';
+
 	export default {
 		data() {
 			return {
@@ -29,14 +34,15 @@
 			this.push(this.$route);
 		},
 		computed:{
+			...mapStores(useGlobalStore,useIframeStore,),
 			iframeList(){
-				return this.$store.state.iframe.iframeList
+				return this.iframeStore.iframeList
 			},
 			ismobile(){
-				return this.$store.state.global.ismobile
+				return this.globalStore.ismobile
 			},
 			layoutTags(){
-				return this.$store.state.global.layoutTags
+				return this.globalStore.layoutTags
 			}
 		},
 		mounted() {
@@ -46,13 +52,15 @@
 			push(route){
 				if(route.meta.type == 'iframe'){
 					if(this.ismobile || !this.layoutTags){
-						this.$store.commit("setIframeList", route)
+					this.iframeStore.setIframeList(route)
+
 					}else{
-						this.$store.commit("pushIframeList", route)
+					this.iframeStore.pushIframeList(route)
+
 					}
 				}else{
 					if(this.ismobile || !this.layoutTags){
-						this.$store.commit("clearIframeList")
+					this.iframeStore.clearIframeList()
 					}
 				}
 			}

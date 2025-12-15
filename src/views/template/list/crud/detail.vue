@@ -17,6 +17,9 @@
 </template>
 
 <script>
+import { useViewTagsStore } from '@/store/viewTags';
+import { mapStores } from 'pinia';
+
 	export default {
 		name: 'listCrud-detail',
 		data() {
@@ -25,16 +28,17 @@
 				input: ""
 			}
 		},
+
+		computed:{
+			...mapStores(useViewTagsStore)
+		},
 		created() {
 
 		},
 		mounted() {
 			//修改tab名称
-			this.$store.commit("updateViewTagsTitle", this.id?`CURD编辑ID:${this.id}`:"CURD新增")
+			this.viewTagsStore.updateViewTagsTitle(this.id?`CURD编辑ID:${this.id}`:"CURD新增")
 		},
-		methods: {
-
-		}
 	}
 </script>
 

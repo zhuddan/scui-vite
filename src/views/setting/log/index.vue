@@ -48,7 +48,7 @@
 
 <script>
 	import info from './info'
-	import scEcharts from '@/components/scEcharts'
+	import scEcharts from  '@/components/scEcharts/index.vue'
 
 	export default {
 		name: 'log',

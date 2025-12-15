@@ -30,7 +30,7 @@
 						</el-menu>
 					</el-scrollbar>
 				</div>
-				<div class="adminui-side-bottom" @click="$store.commit('TOGGLE_menuIsCollapse')">
+				<div class="adminui-side-bottom" @click="globalStore.TOGGLE_menuIsCollapse()">
 					<el-icon><el-icon-expand v-if="menuIsCollapse"/><el-icon-fold v-else /></el-icon>
 				</div>
 			</div>
@@ -40,8 +40,8 @@
 				<Tags v-if="!ismobile && layoutTags"></Tags>
 				<div class="adminui-main" id="adminui-main">
 					<router-view v-slot="{ Component }">
-					    <keep-alive :include="this.$store.state.keepAlive.keepLiveRoute">
-					        <component :is="Component" :key="$route.fullPath" v-if="$store.state.keepAlive.routeShow"/>
+					    <keep-alive :include="keepAliveStore.keepLiveRoute">
+					        <component :is="Component" :key="$route.fullPath" v-if="keepAliveStore.routeShow"/>
 					    </keep-alive>
 					</router-view>
 					<iframe-view></iframe-view>
@@ -72,7 +72,7 @@
 						</el-menu>
 					</el-scrollbar>
 				</div>
-				<div class="adminui-side-bottom" @click="$store.commit('TOGGLE_menuIsCollapse')">
+				<div class="adminui-side-bottom" @click="globalStore.TOGGLE_menuIsCollapse()">
 					<el-icon><el-icon-expand v-if="menuIsCollapse"/><el-icon-fold v-else /></el-icon>
 				</div>
 			</div>
@@ -82,8 +82,8 @@
 				<Tags v-if="!ismobile && layoutTags"></Tags>
 				<div class="adminui-main" id="adminui-main">
 					<router-view v-slot="{ Component }">
-					    <keep-alive :include="this.$store.state.keepAlive.keepLiveRoute">
-					        <component :is="Component" :key="$route.fullPath" v-if="$store.state.keepAlive.routeShow"/>
+					    <keep-alive :include="keepAliveStore.keepLiveRoute">
+					        <component :is="Component" :key="$route.fullPath" v-if="keepAliveStore.routeShow"/>
 					    </keep-alive>
 					</router-view>
 					<iframe-view></iframe-view>
@@ -116,8 +116,8 @@
 				<Tags v-if="!ismobile && layoutTags"></Tags>
 				<div class="adminui-main" id="adminui-main">
 					<router-view v-slot="{ Component }">
-					    <keep-alive :include="this.$store.state.keepAlive.keepLiveRoute">
-					        <component :is="Component" :key="$route.fullPath" v-if="$store.state.keepAlive.routeShow"/>
+					    <keep-alive :include="keepAliveStore.keepLiveRoute">
+					        <component :is="Component" :key="$route.fullPath" v-if="keepAliveStore.routeShow"/>
 					    </keep-alive>
 					</router-view>
 					<iframe-view></iframe-view>
@@ -132,7 +132,7 @@
 			<div v-if="!ismobile" class="aminui-side-split">
 				<div class="aminui-side-split-top">
 					<router-link :to="$CONFIG.DASHBOARD_URL">
-						<img class="logo" :title="$CONFIG.APP_NAME" src="img/logo-r.png">
+						<img class="logo" :title="$CONFIG.APP_NAME" src="/img/logo-r.png">
 					</router-link>
 				</div>
 				<div class="adminui-side-split-scroll">
@@ -158,7 +158,7 @@
 						</el-menu>
 					</el-scrollbar>
 				</div>
-				<div class="adminui-side-bottom" @click="$store.commit('TOGGLE_menuIsCollapse')">
+				<div class="adminui-side-bottom" @click="globalStore.TOGGLE_menuIsCollapse()">
 					<el-icon><el-icon-expand v-if="menuIsCollapse"/><el-icon-fold v-else /></el-icon>
 				</div>
 			</div>
@@ -170,8 +170,8 @@
 				<Tags v-if="!ismobile && layoutTags"></Tags>
 				<div class="adminui-main" id="adminui-main">
 					<router-view v-slot="{ Component }">
-					    <keep-alive :include="this.$store.state.keepAlive.keepLiveRoute">
-					        <component :is="Component" :key="$route.fullPath" v-if="$store.state.keepAlive.routeShow"/>
+					    <keep-alive :include="keepAliveStore.keepLiveRoute">
+					        <component :is="Component" :key="$route.fullPath" v-if="keepAliveStore.routeShow"/>
 					    </keep-alive>
 					</router-view>
 					<iframe-view></iframe-view>
@@ -200,6 +200,9 @@
 	import setting from './components/setting.vue';
 	import iframeView from './components/iframeView.vue';
 	import autoExit from './other/autoExit.js';
+import { mapStores } from 'pinia';
+import { useGlobalStore } from '@/store/global';
+import { useKeepAliveStore } from '@/store/keepAlive';
 
 	export default {
 		name: 'index',
@@ -223,17 +226,18 @@
 			}
 		},
 		computed:{
+			...mapStores(useGlobalStore,useKeepAliveStore),
 			ismobile(){
-				return this.$store.state.global.ismobile
+				return this.globalStore.ismobile
 			},
 			layout(){
-				return this.$store.state.global.layout
+				return this.globalStore.layout
 			},
 			layoutTags(){
-				return this.$store.state.global.layoutTags
+				return this.globalStore.layoutTags
 			},
 			menuIsCollapse(){
-				return this.$store.state.global.menuIsCollapse
+				return this.globalStore.menuIsCollapse
 			}
 		},
 		created() {
@@ -259,7 +263,7 @@
 				this.settingDialog = true;
 			},
 			onLayoutResize(){
-				this.$store.commit("SET_ismobile", document.body.clientWidth < 992)
+				this.globalStore.SET_ismobile(document.body.clientWidth < 992)
 			},
 			//路由监听高亮
 			showThis(){

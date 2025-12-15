@@ -35,7 +35,9 @@
 </template>
 
 <script>
-	import colorTool from '@/utils/color'
+	import { useGlobalStore } from '@/store/global';
+import colorTool from '@/utils/color'
+import { mapStores } from 'pinia';
 
 	export default {
 		data(){
@@ -49,15 +51,19 @@
 				colorPrimary: this.$TOOL.data.get('APP_COLOR') || this.$CONFIG.COLOR || '#409EFF'
 			}
 		},
+		computed:{
+			...mapStores(useGlobalStore,)
+		},
 		watch: {
 			layout(val) {
-				this.$store.commit("SET_layout", val)
+				this.globalStore.SET_layout(val)
 			},
 			menuIsCollapse(){
-				this.$store.commit("TOGGLE_menuIsCollapse")
+				this.globalStore.TOGGLE_menuIsCollapse()
+				
 			},
 			layoutTags(){
-				this.$store.commit("TOGGLE_layoutTags")
+				this.globalStore.TOGGLE_layoutTags()
 			},
 			dark(val){
 				if(val){
