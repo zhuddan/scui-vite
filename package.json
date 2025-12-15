@@ -1,0 +1,39 @@
+{
+  "name": "scui-vite",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@element-plus/icons-vue": "^2.3.2",
+    "crypto-js": "^4.2.0",
+    "element-plus": "^2.12.0",
+    "nprogress": "^0.2.0",
+    "pinia": "^3.0.4",
+    "qrcodejs2": "0.0.2",
+    "vue": "^3.5.25",
+    "vue-i18n": "^11.2.2",
+    "vue-router": "^4.6.3"
+  },
+  "devDependencies": {
+    "@types/crypto-js": "^4.2.2",
+    "@types/nprogress": "^0.2.3",
+    "@vitejs/plugin-vue": "^6.0.2",
+    "sass": "^1.96.0",
+    "sass-embedded": "^1.96.0",
+    "vite": "^7.2.4",
+    "vite-plugin-vue-devtools": "^8.0.5"
+  },
+  "pnpm": {
+    "patchedDependencies": {
+      "qrcodejs2": "patches/qrcodejs2.patch"
+    }
+  }
+}
