@@ -1,192 +1,197 @@
-import { createRouter, createWebHashHistory } from 'vue-router';
-import { ElNotification } from 'element-plus';
-import config from "@/config"
+import { ElNotification } from 'element-plus'
 import NProgress from 'nprogress'
+import { createRouter, createWebHashHistory } from 'vue-router'
+import config from '@/config'
+import userRoutes from '@/config/route'
+import tool from '@/utils/tool'
+import { afterEach, beforeEach } from './scrollBehavior'
+import systemRouter from './systemRouter'
 import 'nprogress/nprogress.css'
-import tool from '@/utils/tool';
-import systemRouter from './systemRouter';
-import userRoutes from '@/config/route';
-import { beforeEach, afterEach } from './scrollBehavior';
 
-//系统路由
+// 系统路由
 const routes = systemRouter
 
-//系统特殊路由
+// 系统特殊路由
 const routes_404 = {
-	path: "/:pathMatch(.*)*",
-	hidden: true,
-	component: () => import(/* webpackChunkName: "404" */ '@/layout/other/404.vue'),
+  path: '/:pathMatch(.*)*',
+  hidden: true,
+  component: () => import(/* webpackChunkName: "404" */ '@/layout/other/404.vue'),
 }
 let routes_404_r = () => { }
 
 const router = createRouter({
-	history: createWebHashHistory(),
-	routes: routes
+  history: createWebHashHistory(),
+  routes,
 })
 
-//设置标题
+// 设置标题
 document.title = config.APP_NAME
 
-//判断是否已加载过动态/静态路由
-var isGetRouter = false;
+// 判断是否已加载过动态/静态路由
+let isGetRouter = false
 
 router.beforeEach(async (to, from, next) => {
+  NProgress.start()
+  // 动态标题
+  document.title = to.meta.title ? `${to.meta.title} - ${config.APP_NAME}` : `${config.APP_NAME}`
 
+  let token = tool.cookie.get('TOKEN')
 
-	NProgress.start()
-	//动态标题
-	document.title = to.meta.title ? `${to.meta.title} - ${config.APP_NAME}` : `${config.APP_NAME}`
+  if (to.path === '/login') {
+    // 删除路由(替换当前layout路由)
+    router.addRoute(routes[0])
+    // 删除路由(404)
+    routes_404_r()
+    isGetRouter = false
+    next()
+    return false
+  }
 
-	let token = tool.cookie.get("TOKEN");
+  if (routes.findIndex(r => r.path === to.path) >= 0) {
+    next()
+    return false
+  }
 
-	if (to.path === "/login") {
-		//删除路由(替换当前layout路由)
-		router.addRoute(routes[0])
-		//删除路由(404)
-		routes_404_r()
-		isGetRouter = false;
-		next();
-		return false;
-	}
+  if (!token) {
+    next({
+      path: '/login',
+    })
+    return false
+  }
 
-	if (routes.findIndex(r => r.path === to.path) >= 0) {
-		next();
-		return false;
-	}
-
-	if (!token) {
-		next({
-			path: '/login'
-		});
-		return false;
-	}
-
-	//整页路由处理
-	if (to.meta.fullpage) {
-		to.matched = [to.matched[to.matched.length - 1]]
-	}
-	//加载动态/静态路由
-	if (!isGetRouter) {
-		let apiMenu = tool.data.get("MENU") || []
-		let userInfo = tool.data.get("USER_INFO")
-		let userMenu = treeFilter(userRoutes, node => {
-			return node.meta.role ? node.meta.role.filter(item => userInfo.role.indexOf(item) > -1).length > 0 : true
-		})
-		let menu = [...userMenu, ...apiMenu]
-		var menuRouter = filterAsyncRouter(menu)
-		menuRouter = flatAsyncRoutes(menuRouter)
-		menuRouter.forEach(item => {
-			router.addRoute("layout", item)
-		})
-		routes_404_r = router.addRoute(routes_404)
-		if (to.matched.length == 0) {
-			router.push(to.fullPath);
-		}
-		isGetRouter = true;
-	}
-	beforeEach(to, from)
-	next();
-});
+  // 整页路由处理
+  if (to.meta.fullpage) {
+    to.matched = [to.matched[to.matched.length - 1]]
+  }
+  // 加载动态/静态路由
+  if (!isGetRouter) {
+    const apiMenu = tool.data.get('MENU') || []
+    const userInfo = tool.data.get('USER_INFO')
+    const userMenu = treeFilter(userRoutes, (node) => {
+      return node.meta.role ? node.meta.role.filter(item => userInfo.role.includes(item)).length > 0 : true
+    })
+    const menu = [...userMenu, ...apiMenu]
+    let menuRouter = filterAsyncRouter(menu)
+    menuRouter = flatAsyncRoutes(menuRouter)
+    menuRouter.forEach((item) => {
+      router.addRoute('layout', item)
+    })
+    routes_404_r = router.addRoute(routes_404)
+    if (to.matched.length == 0) {
+      router.push(to.fullPath)
+    }
+    isGetRouter = true
+  }
+  beforeEach(to, from)
+  next()
+})
 
 router.afterEach((to, from) => {
-	afterEach(to, from)
-	NProgress.done()
-});
+  afterEach(to, from)
+  NProgress.done()
+})
 
 router.onError((error) => {
-	NProgress.done();
-	ElNotification.error({
-		title: '路由错误',
-		message: error.message
-	});
-});
+  NProgress.done()
+  ElNotification.error({
+    title: '路由错误',
+    message: error.message,
+  })
+})
 
-//入侵追加自定义方法、对象
+// 入侵追加自定义方法、对象
 router.sc_getMenu = () => {
-	var apiMenu = tool.data.get("MENU") || []
-	let userInfo = tool.data.get("USER_INFO")
-	let userMenu = treeFilter(userRoutes, node => {
-		return node.meta.role ? node.meta.role.filter(item => userInfo.role.indexOf(item) > -1).length > 0 : true
-	})
-	var menu = [...userMenu, ...apiMenu]
-	return menu
+  let apiMenu = tool.data.get('MENU') || []
+  let userInfo = tool.data.get('USER_INFO')
+  let userMenu = treeFilter(userRoutes, (node) => {
+    return node.meta.role ? node.meta.role.filter(item => userInfo.role.includes(item)).length > 0 : true
+  })
+  let menu = [...userMenu, ...apiMenu]
+  return menu
 }
 
-//转换
+// 转换
 function filterAsyncRouter(routerMap) {
-	const accessedRouters = []
-	routerMap.forEach(item => {
-		item.meta = item.meta ? item.meta : {};
-		//处理外部链接特殊路由
-		if (item.meta.type == 'iframe') {
-			item.meta.url = item.path;
-			item.path = `/i/${item.name}`;
-		}
-		//MAP转路由对象
-		var route = {
-			path: item.path,
-			name: item.name,
-			meta: item.meta,
-			redirect: item.redirect,
-			children: item.children ? filterAsyncRouter(item.children) : null,
-			component: loadComponent(item.component)
-		}
-		accessedRouters.push(route)
-	})
-	return accessedRouters
+  const accessedRouters = []
+  routerMap.forEach((item) => {
+    item.meta = item.meta ? item.meta : {}
+    // 处理外部链接特殊路由
+    if (item.meta.type == 'iframe') {
+      item.meta.url = item.path
+      item.path = `/i/${item.name}`
+    }
+    // MAP转路由对象
+    let route = {
+      path: item.path,
+      name: item.name,
+      meta: item.meta,
+      redirect: item.redirect,
+      children: item.children ? filterAsyncRouter(item.children) : null,
+      component: loadComponent(item.component),
+    }
+    accessedRouters.push(route)
+  })
+  return accessedRouters
 }
 /**
  * 把 { /src/views/home/index: () => import("/src/views/home/index.vue")
  * 转换成 { home/index: () => import("/src/views/home/index.vue")
  */
 const modules = Object.fromEntries(
-	Object.entries(import.meta.glob('@/views/**/*.vue'))
-		.map(([name, module]) => {
-			name = name.replace('/src/views/', '').replace('.vue', '')
-			return [name, module]
-		})
+  Object.entries(import.meta.glob('@/views/**/*.vue'))
+    .map(([name, module]) => {
+      name = name.replace('/src/views/', '').replace('.vue', '')
+      return [name, module]
+    }),
 )
 
 function loadComponent(component) {
-	if(component && modules[component]){
-		return  modules[component]
-	}else{
-		return () => import(`@/layout/other/empty.vue`)
-	}
+  if (component && modules[component]) {
+    return modules[component]
+  }
+  else if (modules[`${component}/index`]) {
+    // 尝试加载目录下的index.vue
+    // ps 新配置的路由请尽量避免使用这种方式，直接指定到具体文件，避免增加不必要的打包体积
+    return modules[component][`/index`]
+  }
+  else {
+    return () => import(`@/layout/other/empty.vue`)
+  }
 }
 
-//路由扁平化
+// 路由扁平化
 function flatAsyncRoutes(routes, breadcrumb = []) {
-	let res = []
-	routes.forEach(route => {
-		const tmp = { ...route }
-		if (tmp.children) {
-			let childrenBreadcrumb = [...breadcrumb]
-			childrenBreadcrumb.push(route)
-			let tmpRoute = { ...route }
-			tmpRoute.meta.breadcrumb = childrenBreadcrumb
-			delete tmpRoute.children
-			res.push(tmpRoute)
-			let childrenRoutes = flatAsyncRoutes(tmp.children, childrenBreadcrumb)
-			childrenRoutes.map(item => {
-				res.push(item)
-			})
-		} else {
-			let tmpBreadcrumb = [...breadcrumb]
-			tmpBreadcrumb.push(tmp)
-			tmp.meta.breadcrumb = tmpBreadcrumb
-			res.push(tmp)
-		}
-	})
-	return res
+  let res = []
+  routes.forEach((route) => {
+    const tmp = { ...route }
+    if (tmp.children) {
+      let childrenBreadcrumb = [...breadcrumb]
+      childrenBreadcrumb.push(route)
+      let tmpRoute = { ...route }
+      tmpRoute.meta.breadcrumb = childrenBreadcrumb
+      delete tmpRoute.children
+      res.push(tmpRoute)
+      let childrenRoutes = flatAsyncRoutes(tmp.children, childrenBreadcrumb)
+      childrenRoutes.map((item) => {
+        res.push(item)
+      })
+    }
+    else {
+      let tmpBreadcrumb = [...breadcrumb]
+      tmpBreadcrumb.push(tmp)
+      tmp.meta.breadcrumb = tmpBreadcrumb
+      res.push(tmp)
+    }
+  })
+  return res
 }
 
-//过滤树
+// 过滤树
 function treeFilter(tree, func) {
-	return tree.map(node => ({ ...node })).filter(node => {
-		node.children = node.children && treeFilter(node.children, func)
-		return func(node) || (node.children && node.children.length)
-	})
+  return tree.map(node => ({ ...node })).filter((node) => {
+    node.children = node.children && treeFilter(node.children, func)
+    return func(node) || (node.children && node.children.length)
+  })
 }
 
 export default router
