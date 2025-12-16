@@ -6,9 +6,6 @@ import colorTool from '@/utils/color'
 export default {
   data() {
     return {
-      layout: this.$store.state.global.layout,
-      menuIsCollapse: this.$store.state.global.menuIsCollapse,
-      layoutTags: this.$store.state.global.layoutTags,
       lang: this.$TOOL.data.get('APP_LANG') || this.$CONFIG.LANG,
       dark: this.$TOOL.data.get('APP_DARK') || false,
       colorList: ['#409EFF', '#009688', '#536dfe', '#ff5c93', '#c62f2f', '#fd726d'],
@@ -17,17 +14,33 @@ export default {
   },
   computed: {
     ...mapStores(useGlobalStore),
+    layout: {
+      get() {
+        return this.globalStore.layout
+      },
+      set(val) {
+        this.globalStore.SET_layout(val)
+      },
+    },
+    menuIsCollapse: {
+      get() {
+        return this.globalStore.menuIsCollapse
+      },
+      set(val) {
+        this.globalStore.menuIsCollapse = val
+      },
+    },
+    layoutTags: {
+      get() {
+        return this.globalStore.layoutTags
+      },
+      set(val) {
+        console.log(val)
+        this.globalStore.layoutTags = val
+      },
+    },
   },
   watch: {
-    layout(val) {
-      this.globalStore.SET_layout(val)
-    },
-    menuIsCollapse() {
-      this.globalStore.TOGGLE_menuIsCollapse()
-    },
-    layoutTags() {
-      this.globalStore.TOGGLE_layoutTags()
-    },
     dark(val) {
       if (val) {
         document.documentElement.classList.add('dark')
