@@ -1,20 +1,21 @@
-import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
+/* eslint-disable perfectionist/sort-imports */
 import 'element-plus/dist/index.css'
 import 'element-plus/theme-chalk/display.css'
-import scui from './scui'
+import ElementPlus from 'element-plus'
+import { createApp } from 'vue'
+import App from './App.vue'
 import i18n from './locales'
 import router from './router'
+import scui from './scui'
 import store from './store'
-import App from './App.vue'
 
-const app = createApp(App);
+const app = createApp(App)
 
-app.use(store);
-app.use(router);
-app.use(ElementPlus);
-app.use(i18n);
-app.use(scui);
+app.use(store)
+app.use(router)
+app.use(ElementPlus)
+app.use(i18n)
+app.use(scui)
 
-//挂载app
-app.mount('#app');
+// 挂载app
+app.mount('#app')
