@@ -78,4 +78,3 @@ if (import.meta.env.PROD) {
 }
 
 export default DEFAULT_CONFIG
-console.log(DEFAULT_CONFIG)
