@@ -9,9 +9,9 @@
 
 ## 一、基础说明
 
-* 项目已由 **Vue CLI** 脚手架迁移至 **Vite**
-* 包管理工具由 **npm** 改为 **pnpm**
-* 请务必使用 **pnpm 安装依赖**
+- 项目已由 **Vue CLI** 脚手架迁移至 **Vite**
+- 包管理工具由 **npm** 改为 **pnpm**
+- 请务必使用 **pnpm 安装依赖**
 
 ```bash
 pnpm install
@@ -48,8 +48,8 @@ store.xxx
 #### ⚠️ Options API（不推荐，但可用）
 
 ```js
-import { useGlobalStore } from '@/store'
 import { mapStores } from 'pinia'
+import { useGlobalStore } from '@/store'
 
 export default {
   computed: {
@@ -72,9 +72,9 @@ export default {
 
 项目已新增 **ESLint 配置**，用于：
 
-* 统一代码风格
-* 格式化代码
-* 将部分「原本只是 error 的语法」升级为 **warning** (本人强烈建议还是改为 error, 但是本部分不会影响项目运行)
+- 统一代码风格
+- 格式化代码
+- 将部分「原本只是 error 的语法」升级为 **warning** (本人强烈建议还是改为 error, 但是本部分不会影响项目运行)
 
 > 当前 ESLint 规则偏严格，
 > 可根据团队或个人需要自行调整 `eslint.config.js`
@@ -99,7 +99,6 @@ export default {
 
 ---
 
-
 ## 五、模块与文件导入规范（非常重要）
 
 ### 1️⃣ 关于 `require / require.context`
@@ -122,10 +121,10 @@ export default modules
 
 ❌ 问题：
 
-* 无类型提示
-* IDE 无法跳转
-* 难以维护
-* **依赖 webpack 特性，Vite 不支持**
+- 无类型提示
+- IDE 无法跳转
+- 难以维护
+- **依赖 webpack 特性，Vite 不支持**
 
 ---
 
@@ -147,10 +146,10 @@ export default {
 
 ✅ 优点：
 
-* IDE 代码提示完整
-* 支持类型检查
-* 易于维护
-* 完全符合 **Vite / ESM 标准**
+- IDE 代码提示完整
+- 支持类型检查
+- 易于维护
+- 完全符合 **Vite / ESM 标准**
 
 <img src="./readme/code.png" />
 
@@ -198,16 +197,16 @@ import A from './a.vue'
 
 ### 4️⃣ 推荐规范（强烈建议）
 
-* ❌ 不依赖 webpack 的隐式解析规则
-* ❌ 不省略 `.vue` 后缀
-* ✅ 所有 Vue 文件 **显式写明路径与后缀**
-* ✅ 按 ESM 标准组织模块
+- ❌ 不依赖 webpack 的隐式解析规则
+- ❌ 不省略 `.vue` 后缀
+- ✅ 所有 Vue 文件 **显式写明路径与后缀**
+- ✅ 按 ESM 标准组织模块
 
 这不仅是为了兼容 Vite，也是为了：
 
-* 提升代码可读性
-* 降低迁移成本
-* 减少「环境相关问题」
+- 提升代码可读性
+- 降低迁移成本
+- 减少「环境相关问题」
 
 ---
 
@@ -217,6 +216,7 @@ import A from './a.vue'
 所有模块解析行为均遵循 **标准 ESM 规范**。
 
 ---
+
 ## 六、关于部分历史代码的说明
 
 项目中存在一些 **原本语法并不规范的代码**，
@@ -242,24 +242,108 @@ this.$message.success('删除常用成功')
 
 ---
 
-## 七、最终建议（强烈）
+## 七、JS 环境下的类型提示支持
+
+虽然项目使用的是 JavaScript，但通过 **TypeScript 声明文件**，
+我们为全局组件、全局属性和全局指令提供了完整的类型提示。
+
+### 1️⃣ 全局组件类型提示
+
+在 `types/scui.d.ts` 中已声明所有全局组件：
+
+```typescript
+declare module 'vue' {
+  export interface GlobalComponents {
+    scTable: typeof import('../src/components/scTable/index.vue')['default']
+    scFilterBar: typeof import('../src/components/scFilterBar/index.vue')['default']
+    scUpload: typeof import('../src/components/scUpload/index.vue')['default']
+    // ... 更多组件
+  }
+}
+```
+
+✅ 效果：在模板中直接使用全局组件时，会有完整的 **props 提示**和**类型检查**
+
+---
+
+### 2️⃣ 全局属性类型提示
+
+在 `types/app.global.d.ts` 中已声明所有全局属性：
+
+```typescript
+declare module 'vue' {
+  interface ComponentCustomProperties {
+    $CONFIG: typeof config
+    $TOOL: typeof tool
+    $HTTP: typeof http
+    $API: typeof api
+    $AUTH: typeof permission
+    $ROLE: typeof rolePermission
+  }
+}
+```
+
+✅ 效果：在组件中使用 `this.$CONFIG`、`this.$API` 等时，会有完整的**方法提示**和**参数校验**
+
+---
+
+### 3️⃣ 全局指令类型提示
+
+在 `types/app.directive.d.ts` 中已声明所有自定义指令：
+
+```typescript
+declare module 'vue' {
+  export interface ComponentCustomProperties {
+    vAuth: AuthDirective          // v-auth="'permission'"
+    vAuths: AuthsDirective        // v-auths="['p1', 'p2']"
+    vAuthsAll: AuthsAllDirective  // v-auths-all="['p1', 'p2']"
+    vRole: RoleDirective          // v-role="'admin'"
+    vTime: TimeDirective          // v-time="timestamp"
+    vCopy: CopyDirective          // v-copy="'text'"
+  }
+}
+```
+
+✅ 效果：在模板中使用自定义指令时，会有**参数类型提示**和**值校验**
+
+---
+
+### 📝 使用配置
+
+确保 `jsconfig.json` 配置正确：
+
+```json
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "checkJs": false,
+    "jsx": "preserve"
+  },
+  "include": ["src/**/*", "types/**/*"]
+}
+```
+
+> 💡 即使在纯 JS 项目中，通过 TypeScript 声明文件，
+> VSCode 也能提供接近 TS 项目的**智能提示体验**
+
+---
+
+## 八、最终建议（强烈）
 
 > ⚠️ **本项目仅用于临时应急 / 参考**
 
 ### 强烈建议：
 
-* ❌ 不要继续写 **纯 JS**
-* ✅ 使用 **TypeScript**
-* ❌ 不要再新增 **Options API**
-* ✅ 使用 **setup / Composition API**
+- ❌ 不要继续写 **纯 JS**
+- ✅ 使用 **TypeScript**
+- ❌ 不要再新增 **Options API**
+- ✅ 使用 **setup / Composition API**
 
 这是当前 Vue 生态下：
 
-* 可维护性最好
-* IDE 支持最完整
-* 与 Vite / Pinia / ESLint 最契合的方式
-
-
+- 可维护性最好
+- IDE 支持最完整
+- 与 Vite / Pinia / ESLint 最契合的方式
 
 ---
 
