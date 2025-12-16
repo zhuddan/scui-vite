@@ -267,5 +267,5 @@ this.$message.success('删除常用成功')
 <details>
   <summary>💌 Final Note</summary>
   <br />
-  This project is dedicated to **junjun**.
+  This project is dedicated to <strong>JunJun</strong>.
 </details>
