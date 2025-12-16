@@ -21,7 +21,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-title {
+.sc-title {
   border-bottom: 1px solid #eee;
   margin-bottom: 20px;
   font-size: 17px;

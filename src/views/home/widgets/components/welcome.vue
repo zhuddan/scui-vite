@@ -59,7 +59,7 @@ export default {
 </template>
 
 <style scoped>
-	.welcome {
+.welcome {
 }
 .welcome .logo {
   text-align: center;

@@ -59,7 +59,7 @@ export default {
 </template>
 
 <style scoped>
-	.code {
+.code {
   background: #848484;
   padding: 15px;
   color: #fff;

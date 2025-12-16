@@ -115,7 +115,7 @@ export default {
 </template>
 
 <style scoped>
-	.myMods {
+.myMods {
   list-style: none;
   margin: -10px;
 }

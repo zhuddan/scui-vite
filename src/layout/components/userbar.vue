@@ -198,7 +198,7 @@ export default {
 </template>
 
 <style scoped>
-	.user-bar {
+.user-bar {
   display: flex;
   align-items: center;
   height: 100%;

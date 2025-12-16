@@ -58,7 +58,7 @@ export default {
 </template>
 
 <style scoped>
-	.el-card {
+.el-card {
   margin-bottom: 15px;
 }
 .code-item {

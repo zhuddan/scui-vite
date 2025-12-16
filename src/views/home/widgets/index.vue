@@ -424,7 +424,7 @@ export default {
   background: var(--el-color-primary);
 }
 
-	.dark {
+.dark {
   .widgets-aside {
     background: #2b2b2b;
   }
@@ -447,4 +447,5 @@ export default {
   .customizing .widgets-wrapper {
     margin-right: 0;
   }
+}
 </style>

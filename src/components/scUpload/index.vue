@@ -260,7 +260,7 @@ export default {
 </template>
 
 <style scoped>
-	.el-form-item.is-error .sc-upload .el-upload--picture-card {
+.el-form-item.is-error .sc-upload .el-upload--picture-card {
   border-color: var(--el-color-danger);
 }
 .sc-upload .el-upload--picture-card {

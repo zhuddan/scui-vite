@@ -63,7 +63,7 @@ export default {
 </template>
 
 <style scoped>
-	.up {
+.up {
   text-align: center;
 }
 .up h2 {

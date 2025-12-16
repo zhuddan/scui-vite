@@ -238,7 +238,7 @@ export default {
 </template>
 
 <style scoped>
-	.el-form-item.is-error .sc-upload-multiple:deep(.el-upload--picture-card) {
+.el-form-item.is-error .sc-upload-multiple:deep(.el-upload--picture-card) {
   border-color: var(--el-color-danger);
 }
 :deep(.el-upload-list__item) {

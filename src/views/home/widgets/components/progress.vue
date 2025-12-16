@@ -29,7 +29,7 @@ export default {
 </template>
 
 <style scoped>
-	.progress {
+.progress {
   text-align: center;
 }
 .progress .percentage-value {

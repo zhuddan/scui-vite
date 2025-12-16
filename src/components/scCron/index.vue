@@ -869,7 +869,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-cron:deep(.el-tabs__item) {
+.sc-cron:deep(.el-tabs__item) {
   height: auto;
   line-height: 1;
   padding: 0 7px;

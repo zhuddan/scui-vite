@@ -412,7 +412,7 @@ export default {
 </template>
 
 <style scoped>
-	.scTable {
+.scTable {
 }
 .scTable-table {
   height: calc(100% - 50px);

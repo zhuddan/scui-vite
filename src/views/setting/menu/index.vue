@@ -154,7 +154,7 @@ export default {
 </template>
 
 <style scoped>
-	.menu:deep(.el-tree-node__label) {
+.menu:deep(.el-tree-node__label) {
   display: flex;
   flex: 1;
   height: 100%;

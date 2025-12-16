@@ -192,7 +192,7 @@ export default {
 </template>
 
 <style scoped>
-	.treeMain {
+.treeMain {
   height: 280px;
   overflow: auto;
   border: 1px solid #dcdfe6;

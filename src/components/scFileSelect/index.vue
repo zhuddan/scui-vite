@@ -252,7 +252,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-file-select {
+.sc-file-select {
   display: flex;
 }
 .sc-file-select__files {

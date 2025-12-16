@@ -48,7 +48,7 @@ export default {
 </template>
 
 <style scoped>
-	.aboutTop {
+.aboutTop {
   border: 0;
   background: linear-gradient(to right, #8e54e9, #4776e6);
   color: #fff;

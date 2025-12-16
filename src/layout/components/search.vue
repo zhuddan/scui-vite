@@ -137,7 +137,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-search {
+.sc-search {
 }
 .sc-search-no-result {
   text-align: center;

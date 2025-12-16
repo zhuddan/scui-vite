@@ -68,7 +68,7 @@ export default {
 </template>
 
 <style scoped>
-	.iframe-pages {
+.iframe-pages {
   width: 100%;
   height: 100%;
   background: #fff;

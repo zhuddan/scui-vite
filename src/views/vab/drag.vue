@@ -114,7 +114,7 @@ export default {
 </template>
 
 <style scoped>
-	.dragList {
+.dragList {
   overflow: auto;
 }
 .item {

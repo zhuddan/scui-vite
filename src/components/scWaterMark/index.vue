@@ -62,7 +62,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-water-mark {
+.sc-water-mark {
   position: relative;
   display: inherit;
   width: 100%;

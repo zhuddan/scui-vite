@@ -23,7 +23,7 @@ export default {
 </template>
 
 <style scoped>
-	.item-background p {
+.item-background p {
   color: #999;
   margin-top: 10px;
   line-height: 1.8;

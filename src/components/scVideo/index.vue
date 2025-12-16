@@ -79,7 +79,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-video:deep(.danmu) > * {
+.sc-video:deep(.danmu) > * {
   color: #fff;
   font-size: 20px;
   font-weight: bold;

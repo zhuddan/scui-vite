@@ -114,7 +114,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-form-table {
+.sc-form-table {
   width: 100%;
 }
 .sc-form-table .sc-form-table-handle {

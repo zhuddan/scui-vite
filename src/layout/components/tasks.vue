@@ -82,7 +82,7 @@ export default {
 </template>
 
 <style scoped>
-	.user-bar-tasks-item {
+.user-bar-tasks-item {
   margin-bottom: 10px;
 }
 .user-bar-tasks-item:hover {

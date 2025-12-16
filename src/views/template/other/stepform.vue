@@ -164,7 +164,7 @@ export default {
 </template>
 
 <style scoped>
-	.el-steps:deep(.is-finish) .el-step__line {
+.el-steps:deep(.is-finish) .el-step__line {
   background: var(--el-color-primary);
 }
 </style>

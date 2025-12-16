@@ -21,7 +21,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-state {
+.sc-state {
   display: inline-block;
   background: #000;
   width: 8px;

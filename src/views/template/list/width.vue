@@ -73,7 +73,7 @@ export default {
 </template>
 
 <style scoped>
-	.page-msg {
+.page-msg {
   margin: 15px 0;
 }
 .page-buttons {

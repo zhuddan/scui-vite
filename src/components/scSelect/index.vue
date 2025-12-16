@@ -88,7 +88,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-select {
+.sc-select {
   display: inline-block;
   position: relative;
 }

@@ -79,7 +79,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-password-strength {
+.sc-password-strength {
   height: 5px;
   width: 100%;
   background: var(--el-color-info-light-5);

@@ -242,7 +242,7 @@ export default {
 </template>
 
 <style scoped>
-	.code {
+.code {
   height: 400px;
   overflow: auto;
   background: #333;

@@ -125,7 +125,7 @@ export default {
 </template>
 
 <style scoped>
-	.mobile-nav-button {
+.mobile-nav-button {
   position: fixed;
   bottom: 10px;
   left: 10px;

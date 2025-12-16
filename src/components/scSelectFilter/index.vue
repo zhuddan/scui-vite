@@ -124,7 +124,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-select-filter {
+.sc-select-filter {
   width: 100%;
 }
 .sc-select-filter__item {

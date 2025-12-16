@@ -243,7 +243,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-user-select {
+.sc-user-select {
   display: flex;
 }
 .sc-user-select__left {

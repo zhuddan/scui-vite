@@ -99,7 +99,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-filter-my {
+.sc-filter-my {
 }
 .sc-filter-my-loading {
   padding: 15px;

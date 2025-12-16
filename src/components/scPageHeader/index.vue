@@ -39,7 +39,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-page-header {
+.sc-page-header {
   background: #fff;
   border-bottom: 1px solid #e6e6e6;
   padding: 20px 25px;

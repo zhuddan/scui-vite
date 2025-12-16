@@ -36,7 +36,7 @@ export default {
 </template>
 
 <style scoped>
-	.router-err {
+.router-err {
   display: flex;
   width: 900px;
   margin: 50px auto;

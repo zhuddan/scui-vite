@@ -1,3 +1,4 @@
+<!-- eslint-disable style/no-tabs -->
 <script>
 import { defineAsyncComponent } from 'vue'
 

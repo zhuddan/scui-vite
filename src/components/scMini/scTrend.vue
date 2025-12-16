@@ -59,7 +59,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-trend {
+.sc-trend {
   display: flex;
   align-items: center;
 }

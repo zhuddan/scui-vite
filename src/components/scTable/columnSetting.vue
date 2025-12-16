@@ -95,7 +95,7 @@ export default {
 </template>
 
 <style scoped>
-	.setting-column {
+.setting-column {
 }
 
 .setting-column__title {

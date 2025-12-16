@@ -208,7 +208,7 @@ export default {
 </template>
 
 <style scoped>
-	h2 {
+h2 {
   font-size: 17px;
   color: #3c4a54;
   padding: 0 0 30px 0;

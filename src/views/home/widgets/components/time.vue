@@ -34,7 +34,7 @@ export default {
 </template>
 
 <style scoped>
-	.item-background {
+.item-background {
   background: linear-gradient(to right, #8e54e9, #4776e6);
   color: #fff;
 }

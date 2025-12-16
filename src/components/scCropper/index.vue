@@ -75,7 +75,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-cropper {
+.sc-cropper {
   height: 300px;
 }
 .sc-cropper__img {

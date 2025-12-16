@@ -54,7 +54,7 @@ export default {
 </template>
 
 <style scoped>
-	.printMain .item {
+.printMain .item {
   padding: 20px;
   border: 1px solid #409eff;
   margin-bottom: 20px;

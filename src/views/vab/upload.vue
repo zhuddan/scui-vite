@@ -153,7 +153,7 @@ export default {
 </template>
 
 <style scoped>
-	.el-card + .el-card {
+.el-card + .el-card {
   margin-top: 15px;
 }
 .imglist .el-col + .el-col {

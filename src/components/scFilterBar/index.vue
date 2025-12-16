@@ -310,7 +310,7 @@ export default {
 </template>
 
 <style scoped>
-	.tabs-label {
+.tabs-label {
   padding: 0 20px;
 }
 

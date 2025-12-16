@@ -118,7 +118,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-icon-select {
+.sc-icon-select {
   display: inline-flex;
 }
 .sc-icon-select__wrapper {

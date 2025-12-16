@@ -60,7 +60,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-statistic-title {
+.sc-statistic-title {
   font-size: 12px;
   color: #999;
   margin-bottom: 10px;

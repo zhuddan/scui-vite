@@ -191,7 +191,7 @@ export default {
 </template>
 
 <style scoped>
-	.el-form-item.is-error .sc-upload-file:deep(.el-upload-dragger) {
+.el-form-item.is-error .sc-upload-file:deep(.el-upload-dragger) {
   border-color: var(--el-color-danger);
 }
 .sc-upload-file {

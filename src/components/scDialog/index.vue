@@ -80,7 +80,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-dialog__headerbtn {
+.sc-dialog__headerbtn {
   position: absolute;
   top: var(--el-dialog-padding-primary);
   right: var(--el-dialog-padding-primary);

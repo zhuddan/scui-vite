@@ -110,7 +110,7 @@ export default {
 </template>
 
 <style scoped>
-	.sc-code-editor {
+.sc-code-editor {
   font-size: 14px;
   border: 1px solid #ddd;
   line-height: 150%;
