@@ -152,10 +152,10 @@ export default {
     <div class="qrCodeLogin">
       <sc-qr-code class="qrCode" :text="WechatLoginCode" :size="200" />
       <p class="msg">
-        {{ $tc('login.wechatLoginMsg', 1) }}<br>{{ $tc('login.wechatLoginMsg', 2) }}
+        {{ $t('login.wechatLoginMsg', 1) }}<br>{{ $t('login.wechatLoginMsg', 2) }}
       </p>
       <div v-if="isWechatLoginResult" class="qrCodeLogin-result">
-        <el-result icon="success" :title="$tc('login.wechatLoginResult', 1)" :sub-title="$tc('login.wechatLoginResult', 2)" />
+        <el-result icon="success" :title="$t('login.wechatLoginResult', 1)" :sub-title="$t('login.wechatLoginResult', 2)" />
       </div>
     </div>
   </el-dialog>
