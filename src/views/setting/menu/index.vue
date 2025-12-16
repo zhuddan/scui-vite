@@ -37,7 +37,7 @@
 
 <script>
 	let newMenuIndex = 1;
-	import save from './save'
+	import save from './save.vue'
 
 	export default {
 		name: "settingMenu",
