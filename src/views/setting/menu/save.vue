@@ -67,7 +67,7 @@ export default {
     treeToMap(tree) {
       const map = []
       tree.forEach((item) => {
-        let obj = {
+        const obj = {
           id: item.id,
           parentId: item.parentId,
           title: item.meta.title,
@@ -80,7 +80,7 @@ export default {
     // 保存
     async save() {
       this.loading = true
-      let res = await this.$API.demo.post.post(this.form)
+      const res = await this.$API.demo.post.post(this.form)
       this.loading = false
       if (res.code == 200) {
         this.$message.success('保存成功')

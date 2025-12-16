@@ -47,7 +47,7 @@ export default {
       this.drawer = false
     },
     addTerm() {
-      let len = this.nodeConfig.conditionNodes.length + 1
+      const len = this.nodeConfig.conditionNodes.length + 1
       this.nodeConfig.conditionNodes.push({
         nodeName: `条件${len}`,
         type: 3,
@@ -97,7 +97,7 @@ export default {
       this.form.conditionList.splice(index, 1)
     },
     toText(nodeConfig, index) {
-      let { conditionList } = nodeConfig.conditionNodes[index]
+      const { conditionList } = nodeConfig.conditionNodes[index]
       if (conditionList && conditionList.length == 1) {
         const text = conditionList.map(item => `${item.label}${item.operator}${item.value}`).join(' 和 ')
         return text

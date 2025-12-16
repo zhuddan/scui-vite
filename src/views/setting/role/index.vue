@@ -52,8 +52,8 @@ export default {
     },
     // 删除
     async table_del(row) {
-      let reqData = { id: row.id }
-      let res = await this.$API.demo.post.post(reqData)
+      const reqData = { id: row.id }
+      const res = await this.$API.demo.post.post(reqData)
       if (res.code == 200) {
         this.$refs.table.refresh()
         this.$message.success('删除成功')

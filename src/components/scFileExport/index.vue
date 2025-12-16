@@ -64,10 +64,10 @@ export default {
       this.dialog = false
     },
     download() {
-      let columnArr = {
+      const columnArr = {
         column: this.columnData.filter(n => !n.hide).map(n => n.prop).join(','),
       }
-      let assignData = { ...this.data, ...this.formData, ...columnArr }
+      const assignData = { ...this.data, ...this.formData, ...columnArr }
       if (this.async) {
         this.asyncDownload(this.apiObj, this.formData.fileName, assignData)
       }
@@ -79,7 +79,7 @@ export default {
       }
     },
     linkFile(url, fileName, data = {}) {
-      let a = document.createElement('a')
+      const a = document.createElement('a')
       a.style = 'display: none'
       a.target = '_blank'
       // a.download = fileName
@@ -90,7 +90,7 @@ export default {
     },
     downloadFile(apiObj, fileName, data = {}) {
       this.downLoading = true
-      let _this = this
+      const _this = this
       apiObj.get(data, {
         responseType: 'blob',
         onDownloadProgress(e) {
@@ -101,8 +101,8 @@ export default {
       }).then((res) => {
         this.downLoading = false
         this.downLoadProgress = 0
-        let url = URL.createObjectURL(res)
-        let a = document.createElement('a')
+        const url = URL.createObjectURL(res)
+        const a = document.createElement('a')
         a.style = 'display: none'
         a.target = '_blank'
         a.download = fileName
@@ -146,8 +146,8 @@ export default {
       })
     },
     toQueryString(obj) {
-      let arr = []
-      for (let k in obj) {
+      const arr = []
+      for (const k in obj) {
         arr.push(`${k}=${obj[k]}`)
       }
       return (arr.length > 0 ? '?' : '') + arr.join('&')

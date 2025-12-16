@@ -4,7 +4,7 @@ export const useKeepAliveStore = defineStore('keepAlive', {
   state: () => ({
     keepLiveRoute: [],
     routeKey: null,
-    routeShow: true
+    routeShow: true,
   }),
 
   actions: {
@@ -14,7 +14,7 @@ export const useKeepAliveStore = defineStore('keepAlive', {
       }
     },
     removeKeepLive(component) {
-      var index = this.keepLiveRoute.indexOf(component)
+      const index = this.keepLiveRoute.indexOf(component)
       if (index !== -1) {
         this.keepLiveRoute.splice(index, 1)
       }
@@ -27,6 +27,6 @@ export const useKeepAliveStore = defineStore('keepAlive', {
     },
     setRouteShow(key) {
       this.routeShow = key
-    }
-  }
+    },
+  },
 })

@@ -66,7 +66,7 @@ export default {
           placeholder: '请选择通知类型',
           extend: {
             request: async () => {
-              let list = await this.$API.system.dic.get.get()
+              const list = await this.$API.system.dic.get.get()
               return list.data.map((item) => {
                 return {
                   label: item.label,
@@ -85,10 +85,10 @@ export default {
           extend: {
             remote: true,
             request: async (query) => {
-              let data = {
+              const data = {
                 keyword: query,
               }
-              let list = await this.$API.system.dic.get.get(data)
+              const list = await this.$API.system.dic.get.get(data)
               return list.data.map((item) => {
                 return {
                   label: item.label,

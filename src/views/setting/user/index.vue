@@ -53,8 +53,8 @@ export default {
     },
     // 删除
     async table_del(row, index) {
-      let reqData = { id: row.id }
-      let res = await this.$API.demo.post.post(reqData)
+      const reqData = { id: row.id }
+      const res = await this.$API.demo.post.post(reqData)
       if (res.code == 200) {
         // 这里选择刷新整个表格 OR 插入/编辑现有表格数据
         this.$refs.table.tableData.splice(index, 1)
@@ -90,9 +90,9 @@ export default {
     // 加载树数据
     async getGroup() {
       this.showGrouploading = true
-      let res = await this.$API.system.dept.list.get()
+      const res = await this.$API.system.dept.list.get()
       this.showGrouploading = false
-      let allNode = { id: '', label: '所有' }
+      const allNode = { id: '', label: '所有' }
       res.data.unshift(allNode)
       this.group = res.data
     },
@@ -104,7 +104,7 @@ export default {
     },
     // 树点击事件
     groupClick(data) {
-      let params = {
+      const params = {
         groupId: data.id,
       }
       this.$refs.table.reload(params)

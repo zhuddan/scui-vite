@@ -1,4 +1,3 @@
-
 import { defineStore } from 'pinia'
 import config from '@/config'
 
@@ -31,6 +30,6 @@ export const useGlobalStore = defineStore('global', {
     },
     TOGGLE_layoutTags() {
       this.layoutTags = !this.layoutTags
-    }
-  }
+    },
+  },
 })
