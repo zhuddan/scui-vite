@@ -36,7 +36,12 @@ export default {
 </script>
 
 <template>
-  <el-config-provider :locale="locale" :size="config.size" :z-index="config.zIndex" :button="config.button">
+  <el-config-provider
+    :locale="locale"
+    :size="config.size"
+    :z-index="config.zIndex"
+    :button="config.button"
+  >
     <router-view />
   </el-config-provider>
 </template>

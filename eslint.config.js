@@ -25,5 +25,6 @@ export default antfu({
     'public',
     'src/components/scFilterBar/pinyin.js',
     'src/utils/template.js',
+    'types',
   ],
 })
