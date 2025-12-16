@@ -75,7 +75,7 @@ export default {
 
 * 统一代码风格
 * 格式化代码
-* 将部分「原本只是 warning 的语法」升级为 **error**
+* 将部分「原本只是 error 的语法」升级为 **warning** (本人强烈建议还是改为 error, 但是本部分不会影响项目运行)
 
 > 当前 ESLint 规则偏严格，
 > 可根据团队或个人需要自行调整 `eslint.config.js`
