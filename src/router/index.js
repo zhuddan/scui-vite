@@ -152,7 +152,7 @@ function loadComponent(component) {
   else if (modules[`${component}/index`]) {
     // 尝试加载目录下的index.vue
     // ps 新配置的路由请尽量避免使用这种方式，直接指定到具体文件，避免增加不必要的打包体积
-    return modules[component][`/index`]
+    return modules[`${component}/index`]
   }
   else {
     return () => import(`@/layout/other/empty.vue`)
