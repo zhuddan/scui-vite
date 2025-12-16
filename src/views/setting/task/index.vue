@@ -170,7 +170,7 @@ export default {
 </template>
 
 <style scoped>
-	.task {
+.task {
   height: 210px;
 }
 .task-item h2 {

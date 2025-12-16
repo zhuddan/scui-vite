@@ -62,8 +62,8 @@ export default {
     },
     // 删除明细
     async table_del(row, index) {
-      let reqData = { id: row.id }
-      let res = await this.$API.demo.post.post(reqData)
+      const reqData = { id: row.id }
+      const res = await this.$API.demo.post.post(reqData)
       if (res.code == 200) {
         this.$refs.table.removeIndex(index)
         this.$message.success('删除成功')
@@ -74,7 +74,7 @@ export default {
     },
     // 批量删除
     async batch_del() {
-      let confirmRes = await this.$confirm(`确定删除选中的 ${this.selection.length} 项吗？`, '提示', {
+      const confirmRes = await this.$confirm(`确定删除选中的 ${this.selection.length} 项吗？`, '提示', {
         type: 'warning',
         confirmButtonText: '删除',
         confirmButtonClass: 'el-button--danger',
@@ -84,7 +84,7 @@ export default {
         return false
       }
 
-      let ids = this.selection.map(v => v.id)
+      const ids = this.selection.map(v => v.id)
       this.$refs.table.removeKeys(ids)
       this.$message.success('操作成功')
     },

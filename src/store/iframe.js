@@ -2,7 +2,7 @@ import { defineStore } from 'pinia'
 
 export const useIframeStore = defineStore('iframe', {
   state: () => ({
-    iframeList: []
+    iframeList: [],
   }),
 
   actions: {
@@ -11,7 +11,7 @@ export const useIframeStore = defineStore('iframe', {
       this.iframeList.push(route)
     },
     pushIframeList(route) {
-      let target = this.iframeList.find(item => item.path === route.path)
+      const target = this.iframeList.find(item => item.path === route.path)
       if (!target) {
         this.iframeList.push(route)
       }
@@ -24,11 +24,11 @@ export const useIframeStore = defineStore('iframe', {
       })
     },
     refreshIframe(route) {
-      this.iframeList.forEach(item => {
+      this.iframeList.forEach((item) => {
         if (item.path == route.path) {
-          var url = route.meta.url
+          const url = route.meta.url
           item.meta.url = ''
-          setTimeout(function () {
+          setTimeout(() => {
             item.meta.url = url
           }, 200)
         }
@@ -36,6 +36,6 @@ export const useIframeStore = defineStore('iframe', {
     },
     clearIframeList() {
       this.iframeList = []
-    }
-  }
+    },
+  },
 })

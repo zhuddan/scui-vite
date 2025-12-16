@@ -1,32 +1,32 @@
-<template>
-	<el-container>
-		<el-header>
-			<el-page-header content="FullPage" @back="goBack" />
-		</el-header>
-		<el-main>
-			<el-empty description="FullPageMain"></el-empty>
-		</el-main>
-	</el-container>
-</template>
-
 <script>
-	export default {
-		name: 'fullpage',
-		data() {
-			return {
+export default {
+  name: 'Fullpage',
+  data() {
+    return {
 
-			}
-		},
-		mounted() {
+    }
+  },
+  mounted() {
 
-		},
-		methods: {
-			goBack(){
-				this.$router.go(-1)
-			}
-		}
-	}
+  },
+  methods: {
+    goBack() {
+      this.$router.go(-1)
+    },
+  },
+}
 </script>
+
+<template>
+  <el-container>
+    <el-header>
+      <el-page-header content="FullPage" @back="goBack" />
+    </el-header>
+    <el-main>
+      <el-empty description="FullPageMain" />
+    </el-main>
+  </el-container>
+</template>
 
 <style>
 </style>

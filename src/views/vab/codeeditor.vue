@@ -1,3 +1,4 @@
+<!-- eslint-disable style/no-tabs -->
 <script>
 import { defineAsyncComponent } from 'vue'
 
@@ -45,11 +46,11 @@ ORDER BY \`created_at\` DESC, \`id\` DESC LIMIT 0, 10;`,
     },
     getValue() {
       this.$message('请查看控制台')
-      let v = this.$refs.editor.coder.getValue()
+      const v = this.$refs.editor.coder.getValue()
       console.log(v)
     },
     setValue() {
-      let v = `{"key":"newValue"}`
+      const v = `{"key":"newValue"}`
       this.$refs.editor.coder.setValue(v)
     },
   },

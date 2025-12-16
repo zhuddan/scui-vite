@@ -1,3 +1,4 @@
+/* eslint-disable eslint-comments/no-unlimited-disable */
 /*!
  * template.js v0.7.1 (https://github.com/yanhaijing/template.js)
  * API https://github.com/yanhaijing/template.js/blob/master/doc/api.md

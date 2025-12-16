@@ -1,49 +1,50 @@
-<template>
-	<div v-if="pageLoading">
-		22
-		<el-main>
-			<el-card shadow="never">
-				<el-skeleton :rows="1"></el-skeleton>
-			</el-card>
-			<el-card shadow="never" style="margin-top: 15px;">
-				<el-skeleton></el-skeleton>
-			</el-card>
-		</el-main>
-	</div>
-	<work v-if="dashboard=='1'" @on-mounted="onMounted"></work>
-	<widgets v-else @on-mounted="onMounted"></widgets>
-</template>
-
 <script>
-	import { defineAsyncComponent } from 'vue';
-	const work = defineAsyncComponent(() => import('./work/index.vue'));
-	const widgets = defineAsyncComponent(() => import('./widgets/index.vue'));
+import { defineAsyncComponent } from 'vue'
 
-	export default {
-		name: "dashboard",
-		components: {
-			work,
-			widgets
-		},
-		data(){
-			return {
-				pageLoading: true,
-				dashboard: '0'
-			}
-		},
-		created(){
-			this.dashboard = this.$TOOL.data.get("USER_INFO").dashboard || '0';
-		},
-		mounted(){
+const work = defineAsyncComponent(() => import('./work/index.vue'))
+const widgets = defineAsyncComponent(() => import('./widgets/index.vue'))
 
-		},
-		methods: {
-			onMounted(){
-				this.pageLoading = false
-			}
-		}
-	}
+export default {
+  name: 'Dashboard',
+  components: {
+    Work: work,
+    Widgets: widgets,
+  },
+  data() {
+    return {
+      pageLoading: true,
+      dashboard: '0',
+    }
+  },
+  created() {
+    this.dashboard = this.$TOOL.data.get('USER_INFO').dashboard || '0'
+  },
+  mounted() {
+
+  },
+  methods: {
+    onMounted() {
+      this.pageLoading = false
+    },
+  },
+}
 </script>
+
+<template>
+  <div v-if="pageLoading">
+    22
+    <el-main>
+      <el-card shadow="never">
+        <el-skeleton :rows="1" />
+      </el-card>
+      <el-card shadow="never" style="margin-top: 15px;">
+        <el-skeleton />
+      </el-card>
+    </el-main>
+  </div>
+  <Work v-if="dashboard == '1'" @on-mounted="onMounted" />
+  <Widgets v-else @on-mounted="onMounted" />
+</template>
 
 <style>
 </style>

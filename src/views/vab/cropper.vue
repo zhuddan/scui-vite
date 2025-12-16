@@ -37,7 +37,7 @@ export default {
     },
     getFile() {
       this.$refs.cropper.getCropFile((file) => {
-        let aTag = document.createElement('a')
+        const aTag = document.createElement('a')
         aTag.download = file.name
         aTag.href = URL.createObjectURL(file)
         aTag.click()

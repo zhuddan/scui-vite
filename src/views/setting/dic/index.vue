@@ -38,11 +38,11 @@ export default {
   methods: {
     // 加载树数据
     async getDic() {
-      let res = await this.$API.system.dic.tree.get()
+      const res = await this.$API.system.dic.tree.get()
       this.showDicloading = false
       this.dicList = res.data
       // 获取第一个节点,设置选中 & 加载明细列表
-      let firstNode = this.dicList[0]
+      const firstNode = this.dicList[0]
       if (firstNode) {
         this.$nextTick(() => {
           this.$refs.dic.setCurrentKey(firstNode.id)
@@ -57,7 +57,7 @@ export default {
     dicFilterNode(value, data) {
       if (!value)
         return true
-      let targetText = data.name + data.code
+      const targetText = data.name + data.code
       return targetText.includes(value)
     },
     // 树增加
@@ -71,8 +71,8 @@ export default {
     dicEdit(data) {
       this.dialog.dic = true
       this.$nextTick(() => {
-        let editNode = this.$refs.dic.getNode(data.id)
-        let editNodeParentId = editNode.level == 1 ? undefined : editNode.parent.data.id
+        const editNode = this.$refs.dic.getNode(data.id)
+        const editNodeParentId = editNode.level == 1 ? undefined : editNode.parent.data.id
         data.parentId = editNodeParentId
         this.$refs.dicDialog.open('edit').setData(data)
       })
@@ -91,10 +91,10 @@ export default {
         this.showDicloading = true
 
         // 删除节点是否为高亮当前 是的话 设置第一个节点高亮
-        let dicCurrentKey = this.$refs.dic.getCurrentKey()
+        const dicCurrentKey = this.$refs.dic.getCurrentKey()
         this.$refs.dic.remove(data.id)
         if (dicCurrentKey == data.id) {
-          let firstNode = this.dicList[0]
+          const firstNode = this.dicList[0]
           if (firstNode) {
             this.$refs.dic.setCurrentKey(firstNode.id)
             this.$refs.table.upData({
@@ -133,7 +133,7 @@ export default {
     addInfo() {
       this.dialog.list = true
       this.$nextTick(() => {
-        let dicCurrentKey = this.$refs.dic.getCurrentKey()
+        const dicCurrentKey = this.$refs.dic.getCurrentKey()
         const data = {
           dic: dicCurrentKey,
         }
@@ -149,8 +149,8 @@ export default {
     },
     // 删除明细
     async table_del(row, index) {
-      let reqData = { id: row.id }
-      let res = await this.$API.demo.post.post(reqData)
+      const reqData = { id: row.id }
+      const res = await this.$API.demo.post.post(reqData)
       if (res.code == 200) {
         this.$refs.table.tableData.splice(index, 1)
         this.$message.success('删除成功')
@@ -182,7 +182,7 @@ export default {
     saveList() {
       this.$refs.listDialog.submit(async (formData) => {
         this.isListSaveing = true
-        let res = await this.$API.demo.post.post(formData)
+        const res = await this.$API.demo.post.post(formData)
         this.isListSaveing = false
         if (res.code == 200) {
           // 这里选择刷新整个表格 OR 插入/编辑现有表格数据
@@ -230,11 +230,11 @@ export default {
         this.$refs.dic.setCurrentKey(data.id)
       }
       else if (mode == 'edit') {
-        let editNode = this.$refs.dic.getNode(data.id)
+        const editNode = this.$refs.dic.getNode(data.id)
         // 判断是否移动？
-        let editNodeParentId = editNode.level == 1 ? undefined : editNode.parent.data.id
+        const editNodeParentId = editNode.level == 1 ? undefined : editNode.parent.data.id
         if (editNodeParentId != data.parentId) {
-          let obj = editNode.data
+          const obj = editNode.data
           this.$refs.dic.remove(data.id)
           this.$refs.dic.append(obj, data.parentId[0])
         }
@@ -338,7 +338,7 @@ export default {
 </template>
 
 <style scoped>
-	.menu:deep(.el-tree-node__label) {
+.menu:deep(.el-tree-node__label) {
   display: flex;
   flex: 1;
   height: 100%;

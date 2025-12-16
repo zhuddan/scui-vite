@@ -103,7 +103,7 @@ export default {
     },
     // 标签切换
     tabChange(name) {
-      let params = {
+      const params = {
         groupId: name,
       }
       this.$refs.table.reload(params)

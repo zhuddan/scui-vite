@@ -79,14 +79,14 @@ export default {
     // 获取表格数据
     async getData() {
       this.loading = true
-      let reqData = {
+      const reqData = {
         [this.defaultProps.page]: this.currentPage,
         [this.defaultProps.pageSize]: this.pageSize,
         [this.defaultProps.keyword]: this.keyword,
       }
       Object.assign(reqData, this.params, this.formData)
-      let res = await this.apiObj.get(reqData)
-      let parseData = config.parseData(res)
+      const res = await this.apiObj.get(reqData)
+      const parseData = config.parseData(res)
       this.tableData = parseData.rows
       this.total = parseData.total
       this.loading = false
@@ -94,14 +94,14 @@ export default {
       this.$nextTick(() => {
         if (this.multiple) {
           this.defaultValue.forEach((row) => {
-            let setrow = this.tableData.filter(item => item[this.defaultProps.value] === row[this.defaultProps.value])
+            const setrow = this.tableData.filter(item => item[this.defaultProps.value] === row[this.defaultProps.value])
             if (setrow.length > 0) {
               this.$refs.table.toggleRowSelection(setrow[0], true)
             }
           })
         }
         else {
-          let setrow = this.tableData.filter(item => item[this.defaultProps.value] === this.defaultValue[this.defaultProps.value])
+          const setrow = this.tableData.filter(item => item[this.defaultProps.value] === this.defaultValue[this.defaultProps.value])
           this.$refs.table.setCurrentRow(setrow[0])
         }
         this.$refs.table.setScrollTop(0)
@@ -132,7 +132,7 @@ export default {
     },
     // 表格勾选事件
     select(rows, row) {
-      let isSelect = rows.length && rows.includes(row)
+      const isSelect = rows.length && rows.includes(row)
       if (isSelect) {
         this.defaultValue.push(row)
       }
@@ -145,10 +145,10 @@ export default {
     },
     // 表格全选事件
     selectAll(rows) {
-      let isAllSelect = rows.length > 0
+      const isAllSelect = rows.length > 0
       if (isAllSelect) {
         rows.forEach((row) => {
-          let isHas = this.defaultValue.find(item => item[this.defaultProps.value] == row[this.defaultProps.value])
+          const isHas = this.defaultValue.find(item => item[this.defaultProps.value] == row[this.defaultProps.value])
           if (!isHas) {
             this.defaultValue.push(row)
           }
@@ -156,7 +156,7 @@ export default {
       }
       else {
         this.tableData.forEach((row) => {
-          let isHas = this.defaultValue.find(item => item[this.defaultProps.value] == row[this.defaultProps.value])
+          const isHas = this.defaultValue.find(item => item[this.defaultProps.value] == row[this.defaultProps.value])
           if (isHas) {
             this.defaultValue.splice(this.defaultValue.findIndex(item => item[this.defaultProps.value] == row[this.defaultProps.value]), 1)
           }
@@ -180,7 +180,7 @@ export default {
     },
     // tags删除后回调
     removeTag(tag) {
-      let row = this.findRowByKey(tag[this.defaultProps.value])
+      const row = this.findRowByKey(tag[this.defaultProps.value])
       this.$refs.table.toggleRowSelection(row, false)
       this.$emit('update:modelValue', this.defaultValue)
     },

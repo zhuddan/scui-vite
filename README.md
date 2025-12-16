@@ -1,4 +1,212 @@
-[https://gitee.com/lolicode/scui](https://gitee.com/lolicode/scui) 的 Vite 版本
+下面是**润色后的 README 文案**，我在不改变你原意的前提下，做了这些事：
+
+* 语气更正式、清晰，偏 **项目说明 / 迁移说明**
+* 技术点分层，更像「给使用者看的 README」
+* 把**强烈建议**和**强制要求**区分开
+* 统一术语（Vite / Pinia / setup / Options API 等）
+
+你可以直接整体替换原 README 对应部分。
+
+---
+
+## SCUI · Vite 版本说明
+
+本仓库基于
+👉 [https://gitee.com/lolicode/scui](https://gitee.com/lolicode/scui)
+
+在**保留原有功能与目录结构的前提下**，完成了以下改造：
+
+---
+
+## 一、基础说明
+
+* 项目已由 **Vue CLI** 脚手架迁移至 **Vite**
+* 包管理工具由 **npm** 改为 **pnpm**
+* 请务必使用 **pnpm 安装依赖**
+
+```bash
+pnpm install
+pnpm dev
+```
+
+---
+
+## 二、状态管理：Vuex → Pinia
+
+项目中已 **完全移除 Vuex**，统一使用 **Pinia**。
+
+### 1️⃣ 原 Vuex 写法（before）
+
+```js
+this.$store.state.xxx
+```
+
+---
+
+### 2️⃣ Pinia 写法（after）
+
+#### ✅ setup 语法（推荐）
+
+```js
+import { useGlobalStore } from '@/store'
+
+const store = useGlobalStore()
+store.xxx
+```
+
+---
+
+#### ⚠️ Options API（不推荐，但可用）
+
+```js
+import { useGlobalStore } from '@/store'
+
+export default {
+  computed: {
+    globalStore() {
+      return useGlobalStore()
+    }
+  },
+  methods: {
+    test() {
+      this.globalStore.xxx
+    }
+  }
+}
+```
+
+> ⚠️ **强烈建议使用 setup 语法**
+> Options API 仅为兼容旧代码，不再推荐新增使用
+
+---
+
+## 三、代码规范：新增 ESLint 格式化
+
+项目已新增 **ESLint 配置**，用于：
+
+* 统一代码风格
+* 格式化代码
+* 将部分「原本只是 warning 的语法」升级为 **error**
+
+> 当前 ESLint 规则偏严格，
+> 可根据团队或个人需要自行调整 `eslint.config.js`
+
+---
+
+## 四、样式相关注意事项（SCSS）
+
+### ❌ 不再使用 `@import`
+
+```scss
+@import './style.scss'; // 已弃用
+```
+
+### ✅ 使用 `@use`
+
+```scss
+@use './style.scss';
+```
+
+> `@import` 已被 Sass 官方弃用，未来版本将直接移除
+
+---
+
+## 五、模块导入规范（非常重要）
+
+### ❌ 禁止使用全局 `require / require.context`
+
+例如 **旧写法（不推荐）**：
+
+```js
+/**
+ * @description 自动 import 所有 api 模块
+ */
+const files = require.context('./model', false, /\.js$/)
+const modules = {}
+files.keys().forEach((key) => {
+  modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
+})
+export default modules
+```
+
+❌ 问题：
+
+* 无类型提示
+* IDE 无法跳转
+* 难以维护
+* Vite 不友好
+
+---
+
+### ✅ 推荐写法（显式导入）
+
+```js
+import auth from './model/auth'
+import common from './model/common'
+import demo from './model/demo'
+import system from './model/system'
+
+export default {
+  auth,
+  common,
+  demo,
+  system,
+}
+```
+
+✅ 优点：
+
+* IDE 代码提示完整
+* 支持类型检查
+* 维护成本更低
+* 更符合 Vite / ESM 生态
+
+<img src="./readme/code.png" />
+
+> 📌 **唯一例外**：路由中按需导入 `.vue` 文件
+
+---
+
+## 六、关于部分历史代码的说明
+
+项目中存在一些 **原本语法并不规范的代码**，
+当前只是通过 ESLint 配置「不再报错」，例如：
+
+```js
+let del
+try {
+  del = await config.delMy(this.filterName)
+}
+catch (error) {
+  return false
+}
+if (!del) {
+  return false
+}
+this.myFilter.splice(index, 1)
+this.$message.success('删除常用成功')
+```
+
+⚠️ **不建议继续这样写**
+这类写法存在可读性和维护性问题，仅作为历史兼容保留。
+
+---
+
+## 七、最终建议（强烈）
+
+> ⚠️ **本项目仅用于临时应急 / 参考**
+
+### 强烈建议：
+
+* ❌ 不要继续写 **纯 JS**
+* ✅ 使用 **TypeScript**
+* ❌ 不要再新增 **Options API**
+* ✅ 使用 **setup / Composition API**
+
+这是当前 Vue 生态下：
+
+* 可维护性最好
+* IDE 支持最完整
+* 与 Vite / Pinia / ESLint 最契合的方式
 
 
-由于 npm 补丁为 pnpm , 请使用 pnpm 安装依赖
