@@ -49,16 +49,15 @@ store.xxx
 
 ```js
 import { useGlobalStore } from '@/store'
+import { mapStores } from 'pinia'
 
 export default {
   computed: {
-    globalStore() {
-      return useGlobalStore()
-    }
+    ...mapStores(useGlobalStore)
   },
   methods: {
     test() {
-      this.globalStore.xxx
+      this.globalStore.xxx // 自动映射为 this.globalStore
     }
   }
 }
@@ -87,7 +86,7 @@ export default {
 ### ❌ 不再使用 `@import`
 
 ```scss
-@import './style.scss'; // 已弃用
+@import './style.scss'; // sass 3 已弃用
 ```
 
 ### ✅ 使用 `@use`
