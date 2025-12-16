@@ -35,7 +35,7 @@ router.beforeEach(async (to, from, next) => {
   // 动态标题
   document.title = to.meta.title ? `${to.meta.title} - ${config.APP_NAME}` : `${config.APP_NAME}`
 
-  let token = tool.cookie.get('TOKEN')
+  const token = tool.cookie.get('TOKEN')
 
   if (to.path === '/login') {
     // 删除路由(替换当前layout路由)
@@ -77,7 +77,7 @@ router.beforeEach(async (to, from, next) => {
       router.addRoute('layout', item)
     })
     routes_404_r = router.addRoute(routes_404)
-    if (to.matched.length == 0) {
+    if (to.matched.length === 0) {
       router.push(to.fullPath)
     }
     isGetRouter = true
@@ -101,12 +101,12 @@ router.onError((error) => {
 
 // 入侵追加自定义方法、对象
 router.sc_getMenu = () => {
-  let apiMenu = tool.data.get('MENU') || []
-  let userInfo = tool.data.get('USER_INFO')
-  let userMenu = treeFilter(userRoutes, (node) => {
+  const apiMenu = tool.data.get('MENU') || []
+  const userInfo = tool.data.get('USER_INFO')
+  const userMenu = treeFilter(userRoutes, (node) => {
     return node.meta.role ? node.meta.role.filter(item => userInfo.role.includes(item)).length > 0 : true
   })
-  let menu = [...userMenu, ...apiMenu]
+  const menu = [...userMenu, ...apiMenu]
   return menu
 }
 
@@ -116,12 +116,12 @@ function filterAsyncRouter(routerMap) {
   routerMap.forEach((item) => {
     item.meta = item.meta ? item.meta : {}
     // 处理外部链接特殊路由
-    if (item.meta.type == 'iframe') {
+    if (item.meta.type === 'iframe') {
       item.meta.url = item.path
       item.path = `/i/${item.name}`
     }
     // MAP转路由对象
-    let route = {
+    const route = {
       path: item.path,
       name: item.name,
       meta: item.meta,
@@ -161,23 +161,23 @@ function loadComponent(component) {
 
 // 路由扁平化
 function flatAsyncRoutes(routes, breadcrumb = []) {
-  let res = []
+  const res = []
   routes.forEach((route) => {
     const tmp = { ...route }
     if (tmp.children) {
-      let childrenBreadcrumb = [...breadcrumb]
+      const childrenBreadcrumb = [...breadcrumb]
       childrenBreadcrumb.push(route)
-      let tmpRoute = { ...route }
+      const tmpRoute = { ...route }
       tmpRoute.meta.breadcrumb = childrenBreadcrumb
       delete tmpRoute.children
       res.push(tmpRoute)
-      let childrenRoutes = flatAsyncRoutes(tmp.children, childrenBreadcrumb)
-      childrenRoutes.map((item) => {
+      const childrenRoutes = flatAsyncRoutes(tmp.children, childrenBreadcrumb)
+      childrenRoutes.forEach((item) => {
         res.push(item)
       })
     }
     else {
-      let tmpBreadcrumb = [...breadcrumb]
+      const tmpBreadcrumb = [...breadcrumb]
       tmpBreadcrumb.push(tmp)
       tmp.meta.breadcrumb = tmpBreadcrumb
       res.push(tmp)
