@@ -261,3 +261,11 @@ this.$message.success('删除常用成功')
 * 与 Vite / Pinia / ESLint 最契合的方式
 
 
+
+---
+
+<details>
+  <summary>💌 Final Note</summary>
+  <br />
+  This project is dedicated to **junjun**.
+</details>
