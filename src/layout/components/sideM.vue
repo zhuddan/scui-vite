@@ -8,10 +8,11 @@ export default {
   directives: {
     drag(el) {
       const oDiv = el // 当前元素
-      let firstTime = ''; let lastTime = ''
+      let firstTime = ''
+      let lastTime = ''
       // 禁止选择网页上的文字
       // document.onselectstart = function() {
-      // 	return false;
+      //  return false;
       // };
       oDiv.onmousedown = function (e) {
         // 鼠标按下，计算当前元素距离可视区的距离

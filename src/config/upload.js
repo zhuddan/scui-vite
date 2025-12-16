@@ -15,6 +15,6 @@ export default {
       msg: res.message, // 分析描述字段结构
     }
   },
-  apiObjFile: API.common.uploadFile,	// 附件上传请求API对象
+  apiObjFile: API.common.uploadFile, // 附件上传请求API对象
   maxSizeFile: 10, // 最大文件大小 默认10MB
 }

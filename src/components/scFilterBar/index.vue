@@ -94,8 +94,9 @@ export default {
     async visibleChange(isopen, item) {
       if (isopen && item.field.extend.request && !item.field.extend.remote) {
         item.selectLoading = true
+        let data
         try {
-          var data = await item.field.extend.request()
+          data = await item.field.extend.request()
         }
         catch (error) {
           console.log(error)
@@ -111,8 +112,9 @@ export default {
       }
       if (query !== '') {
         item.selectLoading = true
+        let data
         try {
-          var data = await item.field.extend.request(query)
+          data = await item.field.extend.request(query)
         }
         catch (error) {
           console.log(error)
@@ -169,8 +171,9 @@ export default {
             title: value,
             filterObj: this.filterObj,
           }
+          let save
           try {
-            var save = await config.saveMy(this.filterName, saveObj)
+            save = await config.saveMy(this.filterName, saveObj)
           }
           catch (error) {
             this.saveLoading = false

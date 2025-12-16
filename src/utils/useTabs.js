@@ -53,7 +53,7 @@ export default {
     const route = router.currentRoute.value
     const tagList = [...viewTagsStore.viewTags]
     tagList.forEach((tag) => {
-      if (tag.meta && tag.meta.affix || route.fullPath == tag.fullPath) {
+      if ((tag.meta && tag.meta.affix) || route.fullPath == tag.fullPath) {
         return true
       }
       else {

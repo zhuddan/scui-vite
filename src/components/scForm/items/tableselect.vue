@@ -21,6 +21,7 @@ export default {
   },
   methods: {
     getApiObj() {
+      // eslint-disable-next-line no-eval
       return eval(`this.${this.item.options.apiObj}`)
     },
   },

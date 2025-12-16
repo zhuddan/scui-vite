@@ -4,6 +4,7 @@ import tasks from './tasks.vue'
 
 export default {
   components: {
+    // eslint-disable-next-line vue/no-reserved-component-names
     Search: search,
     Tasks: tasks,
   },

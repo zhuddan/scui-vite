@@ -10,7 +10,7 @@ const dbData = [
         autoIncrement: false, // 主键是否自增
         index: [ // 索引
           {
-            name: 'name_index',	// 索引名称
+            name: 'name_index', // 索引名称
             key: 'name', // 索引key
           },
         ],
@@ -79,6 +79,7 @@ export default {
     const addDB = (db) => {
       return new Promise((resolve, reject) => {
         const request = indexedDB.open(db.dbName, db.version)
+
         request.onupgradeneeded = (e) => {
           const thisDB = e.target.result
           db.tables.forEach((item) => {
@@ -102,7 +103,7 @@ export default {
               table.createIndex(ind.name, ind.key, { unique: false })
             })
           })
-        },
+        }
         request.onsuccess = (e) => {
           return resolve(e.target.result)
         }
@@ -131,6 +132,7 @@ export default {
     return new Promise((resolve, reject) => {
       const request = indexedDB.open(dbName)
       request.onsuccess = (e) => {
+        // eslint-disable-next-line new-cap
         const database = new this.database(e.target.result)
         resolve(database)
       }

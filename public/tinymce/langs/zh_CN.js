@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-undef
 tinymce.addI18n('zh_CN', {
   'Redo': '\u91CD\u505A',
   'Undo': '\u64A4\u9500',

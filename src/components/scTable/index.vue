@@ -130,17 +130,18 @@ export default {
         delete reqData[config.request.pageSize]
       }
       Object.assign(reqData, this.tableParams)
-
+      let res
       try {
-        var res = await this.apiObj.get(reqData)
+        res = await this.apiObj.get(reqData)
       }
       catch (error) {
         this.loading = false
         this.emptyText = error.statusText
         return false
       }
+      let response
       try {
-        var response = config.parseData(res)
+        response = config.parseData(res)
       }
       catch (error) {
         this.loading = false

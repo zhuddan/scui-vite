@@ -17,7 +17,9 @@ export default {
     drag: { type: Boolean, default: false },
     multiple: { type: Boolean, default: true },
     disabled: { type: Boolean, default: false },
-    onSuccess: { type: Function, default: () => { return true } },
+    onSuccess: { type: Function, default: () => {
+      return true
+    } },
   },
   data() {
     return {

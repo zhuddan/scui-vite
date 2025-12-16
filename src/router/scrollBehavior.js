@@ -4,7 +4,9 @@ import { useViewTagsStore } from '@/store/viewTags'
 export function beforeEach(to, from) {
   const adminMain = document.querySelector('#adminui-main')
   const viewTagsStore = useViewTagsStore()
-  if (!adminMain) { return false }
+  if (!adminMain) {
+    return false
+  }
   viewTagsStore.updateViewTags({
     fullPath: from.fullPath,
     scrollTop: adminMain.scrollTop,
@@ -14,7 +16,9 @@ export function beforeEach(to, from) {
 export function afterEach(to) {
   const viewTagsStore = useViewTagsStore()
   const adminMain = document.querySelector('#adminui-main')
-  if (!adminMain) { return false }
+  if (!adminMain) {
+    return false
+  }
   nextTick(() => {
     const beforeRoute = viewTagsStore.viewTags.filter(v => v.fullPath == to.fullPath)[0]
     if (beforeRoute) {

@@ -2,7 +2,7 @@ import { h, resolveComponent } from 'vue'
 
 export default {
   render() {
-    return h (resolveComponent('el-table-column'),	{
+    return h (resolveComponent('el-table-column'), {
       index: this.index,
       ...this.$attrs,
     }, this.$slots)

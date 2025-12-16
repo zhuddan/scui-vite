@@ -1,3 +1,4 @@
+<!-- eslint-disable style/no-tabs -->
 <script>
 import Editor from '@tinymce/tinymce-vue'
 import tinymce from 'tinymce/tinymce'
@@ -46,6 +47,7 @@ export default {
     },
     toolbar: {
       type: [String, Array],
+      // eslint-disable-next-line no-multi-str
       default: 'undo redo |  forecolor backcolor bold italic underline strikethrough link | blocks fontfamily fontsize | \
 					alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | pagebreak | \
 					image media table template preview | code selectall',
@@ -92,6 +94,7 @@ export default {
             API.common.upload.post(data).then((res) => {
               resolve(res.data.src)
             }).catch(() => {
+              // eslint-disable-next-line prefer-promise-reject-errors
               reject('Image upload failed')
             })
           })

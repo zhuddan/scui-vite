@@ -189,7 +189,7 @@ export default {
       }
       const tags = [...this.tagList]
       tags.forEach((tag) => {
-        if (tag.meta && tag.meta.affix || nowTag.fullPath == tag.fullPath) {
+        if ((tag.meta && tag.meta.affix) || nowTag.fullPath == tag.fullPath) {
           return true
         }
         else {
@@ -231,7 +231,7 @@ export default {
         const moveForwardStep = 1
         const moveBackStep = -1
         let step = 0
-        if (detail == 3 || detail < 0 && detail != -3) {
+        if ((detail == 3) || (detail < 0 && detail != -3)) {
           step = moveForwardStep * 50
         }
         else {
@@ -282,7 +282,7 @@ export default {
 </template>
 
 <style>
-	.contextmenu {
+.contextmenu {
   position: fixed;
   width: 200px;
   margin: 0;

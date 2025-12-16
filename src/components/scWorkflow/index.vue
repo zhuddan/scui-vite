@@ -68,7 +68,7 @@ export default {
 </template>
 
 <style lang="scss">
-	.sc-workflow-design {
+.sc-workflow-design {
   width: 100%;
 }
 .sc-workflow-design .box-scale {

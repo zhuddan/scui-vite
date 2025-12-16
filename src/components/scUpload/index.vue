@@ -26,7 +26,9 @@ export default {
     showFileList: { type: Boolean, default: false },
     disabled: { type: Boolean, default: false },
     round: { type: Boolean, default: false },
-    onSuccess: { type: Function, default: () => { return true } },
+    onSuccess: { type: Function, default: () => {
+      return true
+    } },
 
     cropper: { type: Boolean, default: false },
     compress: { type: Number, default: 1 },

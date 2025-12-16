@@ -132,6 +132,7 @@ export default {
     // 处理动态隐藏
     hideHandle(item) {
       if (item.hideHandle) {
+        // eslint-disable-next-line no-eval
         const exp = eval(item.hideHandle.replace(/\$/g, 'this.form'))
         return exp
       }
@@ -140,6 +141,7 @@ export default {
     // 处理动态必填
     rulesHandle(item) {
       if (item.requiredHandle) {
+        // eslint-disable-next-line no-eval
         const exp = eval(item.requiredHandle.replace(/\$/g, 'this.form'))
         const requiredRule = item.rules.find(t => 'required' in t)
         requiredRule.required = exp

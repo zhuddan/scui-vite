@@ -80,7 +80,7 @@ export default {
     },
     arrTransfer(index, type = 1) {
       this.nodeConfig.conditionNodes[index] = this.nodeConfig.conditionNodes.splice(index + type, 1, this.nodeConfig.conditionNodes[index])[0]
-      this.nodeConfig.conditionNodes.map((item, index) => {
+      this.nodeConfig.conditionNodes.forEach((item, index) => {
         item.priorityLevel = index + 1
       })
       this.$emit('update:modelValue', this.nodeConfig)

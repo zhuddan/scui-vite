@@ -138,7 +138,7 @@ export default {
     // 提交保存
     save() {
       this.value.splice(0, this.value.length)
-      this.selected.map((item) => {
+      this.selected.forEach((item) => {
         this.value.push(item)
       })
       this.dialogVisible = false

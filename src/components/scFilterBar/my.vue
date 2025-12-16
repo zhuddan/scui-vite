@@ -40,8 +40,9 @@ export default {
     },
     // 删除常用过滤
     async closeMyfilter(item, index) {
+      let del
       try {
-        var del = await config.delMy(this.filterName)
+        del = await config.delMy(this.filterName)
       }
       catch (error) {
         return false

@@ -14,8 +14,8 @@ export default {
     }
     const permissions = tool.data.get('PERMISSIONS')
     let flag = false
-    permissions.map((val) => {
-      binding.value.map((v) => {
+    permissions.forEach((val) => {
+      binding.value.forEach((v) => {
         if (val === v)
           flag = true
       })

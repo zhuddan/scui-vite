@@ -39,7 +39,8 @@ export default {
     async create() {
       return new Promise((resolve) => {
         const element = document.createElement('div')
-        new QRcode(element, {
+        // eslint-disable-next-line no-unused-vars
+        const _qr = new QRcode(element, {
           text: this.text,
           width: this.size,
           height: this.size,

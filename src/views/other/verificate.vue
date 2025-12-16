@@ -25,7 +25,9 @@ export default {
           { required: true, type: 'enum', enum: ['admin', 'user', 'guest'], message: '请填写admin，user，guest其一' },
         ],
         custom: [
-          { required: true, validator: (rule, value) => { return value === '1' }, message: '请填写数字1', trigger: 'blur' },
+          { required: true, validator: (rule, value) => {
+            return value === '1'
+          }, message: '请填写数字1', trigger: 'blur' },
         ],
         async: [
           {

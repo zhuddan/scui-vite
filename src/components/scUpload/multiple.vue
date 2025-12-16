@@ -18,7 +18,9 @@ export default {
     multiple: { type: Boolean, default: true },
     disabled: { type: Boolean, default: false },
     draggable: { type: Boolean, default: false },
-    onSuccess: { type: Function, default: () => { return true } },
+    onSuccess: { type: Function, default: () => {
+      return true
+    } },
   },
   data() {
     return {

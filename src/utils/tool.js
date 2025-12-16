@@ -167,11 +167,14 @@ tool.dateFormat = function (date, fmt = 'yyyy-MM-dd hh:mm:ss') {
     'q+': Math.floor((date.getMonth() + 3) / 3), // 季度
     'S': date.getMilliseconds(), // 毫秒
   }
+  // eslint-disable-next-line regexp/no-unused-capturing-group
   if (/(y+)/.test(fmt)) {
+    // eslint-disable-next-line regexp/no-legacy-features
     fmt = fmt.replace(RegExp.$1, (`${date.getFullYear()}`).substr(4 - RegExp.$1.length))
   }
   for (const k in o) {
     if (new RegExp(`(${k})`).test(fmt)) {
+      // eslint-disable-next-line regexp/no-legacy-features
       fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : ((`00${o[k]}`).substr((`${o[k]}`).length)))
     }
   }

@@ -89,7 +89,7 @@ export default {
 </template>
 
 <style>
-	.sc-contextmenu {
+.sc-contextmenu {
   position: fixed;
   z-index: 3000;
   font-size: 12px;

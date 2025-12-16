@@ -21,6 +21,7 @@ export default {
   },
   methods: {
     ReferenceError() {
+      // eslint-disable-next-line no-undef
       console.log(obj)
     },
     TypeError() {
@@ -32,13 +33,13 @@ export default {
       n.toFixed(101)
     },
     async api401() {
-      let data = await this.$API.demo.status.get(401)
+      await this.$API.demo.status.get(401)
     },
     async api404() {
-      let data = await this.$API.demo.status.get(404)
+      await this.$API.demo.status.get(404)
     },
     async api500() {
-      let data = await this.$API.demo.status.get(500)
+      await this.$API.demo.status.get(500)
     },
     router404() {
       this.$router.push('/page/404')

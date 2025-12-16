@@ -16,7 +16,14 @@ export default antfu({
      * <el-form ref="form"/>
      */
     'vue/no-unused-refs': 'warn',
+    'vue/custom-event-name-casing': 'off',
+    'unused-imports/no-unused-vars': 'warn',
+    'vue/no-unused-components': 'warn',
   },
 }, {
-  ignores: ['/public/**'],
+  ignores: [
+    'public',
+    'src/components/scFilterBar/pinyin.js',
+    'src/utils/template.js',
+  ],
 })

@@ -19,16 +19,16 @@ export default {
           nodeName: '审核人',
           type: 1, // 节点类型
           setType: 1, // 审核人类型
-          nodeUserList: [],	// 审核人成员
-          nodeRoleList: [],	// 审核角色
-          examineLevel: 1,	// 指定主管层级
-          directorLevel: 1,	// 自定义连续主管审批层级
+          nodeUserList: [], // 审核人成员
+          nodeRoleList: [], // 审核角色
+          examineLevel: 1, // 指定主管层级
+          directorLevel: 1, // 自定义连续主管审批层级
           selectMode: 1, // 发起人自选类型
-          termAuto: false,	// 审批期限超时自动审批
+          termAuto: false, // 审批期限超时自动审批
           term: 0, // 审批期限
           termMode: 1, // 审批期限超时后执行类型
           examineMode: 1, // 多人审批时审批方式
-          directorMode: 0,	// 连续主管审批方式
+          directorMode: 0, // 连续主管审批方式
           childNode: this.modelValue,
         }
       }

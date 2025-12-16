@@ -57,15 +57,15 @@ export default {
       contentValue: this.modelValue,
       coder: null,
       opt: {
-        theme: this.theme,	// 主题
-        styleActiveLine: true,	// 高亮当前行
-        lineNumbers: true,	// 行号
-        lineWrapping: false,	// 自动换行
-        tabSize: 4,	// Tab缩进
-        indentUnit: 4,	// 缩进单位
-        indentWithTabs: true,	// 自动缩进
-        mode: this.mode,	// 语言
-        readOnly: this.readOnly,	// 只读
+        theme: this.theme, // 主题
+        styleActiveLine: true, // 高亮当前行
+        lineNumbers: true, // 行号
+        lineWrapping: false, // 自动换行
+        tabSize: 4, // Tab缩进
+        indentUnit: 4, // 缩进单位
+        indentWithTabs: true, // 自动缩进
+        mode: this.mode, // 语言
+        readOnly: this.readOnly, // 只读
         ...this.options,
       },
     }

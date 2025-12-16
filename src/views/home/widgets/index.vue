@@ -26,9 +26,13 @@ export default {
           description: allComps[key].description,
         })
       }
-      const myCopmsList = this.grid.copmsList.reduce((a, b) => { return a.concat(b) })
+      const myCopmsList = this.grid.copmsList.reduce((a, b) => {
+        return a.concat(b)
+      })
       for (const comp of allCompsList) {
-        const _item = myCopmsList.find((item) => { return item === comp.key })
+        const _item = myCopmsList.find((item) => {
+          return item === comp.key
+        })
         if (_item) {
           comp.disabled = true
         }
@@ -40,7 +44,9 @@ export default {
       return this.allCompsList.filter(item => !item.disabled && myGrid.includes(item.key))
     },
     nowCompsList() {
-      return this.grid.copmsList.reduce((a, b) => { return a.concat(b) })
+      return this.grid.copmsList.reduce((a, b) => {
+        return a.concat(b)
+      })
     },
   },
   created() {
@@ -225,7 +231,7 @@ export default {
 </template>
 
 <style scoped lang="scss">
-	.widgets-home {
+.widgets-home {
   display: flex;
   flex-direction: row;
   flex: 1;

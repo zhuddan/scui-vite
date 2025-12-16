@@ -50,12 +50,14 @@ export default {
   methods: {
     async getYzm() {
       const validate = await this.$refs.form.validateField('phone').catch(() => {})
-      if (!validate) { return false }
+      if (!validate) {
+        return false
+      }
 
       this.$message.success('已发送短信至手机号码')
       this.disabled = true
       this.time = 60
-      var t = setInterval(() => {
+      const t = setInterval(() => {
         this.time -= 1
         if (this.time < 1) {
           clearInterval(t)
@@ -66,7 +68,9 @@ export default {
     },
     async save() {
       const validate = await this.$refs.form.validate().catch(() => {})
-      if (!validate) { return false }
+      if (!validate) {
+        return false
+      }
 
       this.stepActive = 1
     },

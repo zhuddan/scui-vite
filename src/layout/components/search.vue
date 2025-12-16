@@ -50,6 +50,7 @@ export default {
         if ((item.name).toLowerCase().includes(queryString.toLowerCase())) {
           return true
         }
+        return false
       })
       // 匹配系统路由
       const router = this.$router.getRoutes()

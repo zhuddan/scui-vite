@@ -15,11 +15,11 @@ export default {
     async init() {
       const ak = 'vxSbZuydZ42ktZCvXvy5xCai28OEVqUq'
       // loadJS (src, keyName, callbackName)
-      // src 			必填，需要加载的URL路径
-      // keyName 		必填，有2个作用，作为唯一KEY防止N次插入DOM；作为JS返回对象的key名，类似百度地图的BMapGL，如果没有则返回null
-      // callbackName 	非必填，如果远程JS有callback，填写callback方法名称。
+      // src 必填，需要加载的URL路径
+      // keyName 必填，有2个作用，作为唯一KEY防止N次插入DOM；作为JS返回对象的key名，类似百度地图的BMapGL，如果没有则返回null
+      // callbackName 非必填，如果远程JS有callback，填写callback方法名称。
       // loadJS返回Promise，如果全局对象eslint发出警告 需要//eslint-disable-next-line，暂时关闭警告行
-      //																							╭───这两个字符串要一致───╮
+      //                                              ╭───这两个字符串要一致───╮
       const BMapGL = await loadJS(`//api.map.baidu.com/api?type=webgl&v=1.0&ak=${ak}&callback=BMapGLinit`, 'BMapGL', 'BMapGLinit')
       // 像BMapGLLib就没有callback，无需第3个参数
       // var BMapGLLib = await loadJS("//api.map.baidu.com/library/LuShu/gl/src/LuShu_min.js", "BMapGLLib")

@@ -37,7 +37,9 @@ export default {
   methods: {
     async login() {
       const validate = await this.$refs.loginForm.validate().catch(() => {})
-      if (!validate) { return false }
+      if (!validate) {
+        return false
+      }
 
       this.islogin = true
       const data = {
