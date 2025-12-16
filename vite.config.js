@@ -1,15 +1,19 @@
 import { fileURLToPath, URL } from 'node:url'
 
 import vue from '@vitejs/plugin-vue'
+import AutoImport from 'unplugin-auto-import/vite'
 import { defineConfig, loadEnv } from 'vite'
 import vueDevTools from 'vite-plugin-vue-devtools'
-
 // https://vite.dev/config/
 export default defineConfig((e) => {
   const env = loadEnv(e.mode, './')
   return {
     plugins: [
       vue(),
+      AutoImport({
+        imports: ['vue', 'vue-router'],
+        dts: 'types/auto-imports.d.ts',
+      }),
       vueDevTools(),
     ],
     resolve: {
