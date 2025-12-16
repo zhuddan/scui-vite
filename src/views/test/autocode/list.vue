@@ -1,5 +1,5 @@
 <script>
-import template from '@/utils/template.js'
+import * as template from '@/utils/template.js'
 
 export default {
   name: 'AutocodeList',
